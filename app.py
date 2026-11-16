@@ -19,8 +19,12 @@ from functools import wraps
 from werkzeug.security import generate_password_hash, check_password_hash
 
 BASE_DIR = Path(__file__).resolve().parent
-DB_PATH = Path(os.environ.get('STUDENT_STUDIO_DB', BASE_DIR / 'database.db'))
-GRADES = [('1', 'First secondary'), ('2', 'Second secondary'), ('3', 'Third secondary')]
+DB_PATH = Path(os.environ.get(
+    'STUDENT_STUDIO_DB',
+    '/tmp/student_studio_demo.db'
+    if os.environ.get('VERCEL')
+    else BASE_DIR / 'database.db'
+))GRADES = [('1', 'First secondary'), ('2', 'Second secondary'), ('3', 'Third secondary')]
 GRADE_LABELS = dict(GRADES)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
