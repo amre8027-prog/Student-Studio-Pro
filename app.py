@@ -30,7 +30,8 @@ GRADES = [
     ('1', 'First secondary'),
     ('2', 'Second secondary'),
     ('3', 'Third secondary')
-]GRADE_LABELS = dict(GRADES)
+]
+GRADE_LABELS = dict(GRADES)
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY') or secrets.token_hex(32)
 WHATSAPP_NUMBER = ''.join(
